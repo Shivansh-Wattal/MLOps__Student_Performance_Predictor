@@ -33,14 +33,16 @@ class ModelTrainer:
     def initiate_model_trainer(self,train_array,test_array):
         try:
             logging.info('split training and testing data')
-
+            
+            # Splitting the data.
             x_train,y_train,x_test,y_test = (
                 train_array[:,:-1],
                 train_array[:,-1],
                 test_array[:,:-1],
                 test_array[:,-1]
             )
-
+            
+            # Models to be evaluated.
             models = {
                 "Random Forest": RandomForestRegressor(),
                 "Decision Tree": DecisionTreeRegressor(),
@@ -51,6 +53,7 @@ class ModelTrainer:
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
 
+            # Hyperparameter settings
             params={
                 "Decision Tree": {
                     'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
@@ -89,10 +92,11 @@ class ModelTrainer:
                 
             }
 
+            # Evaluating the models.
             model_report: dict =evaluate_model(x_train=x_train,y_train=y_train,x_test=x_test,y_test=y_test,models=models,param=params)
-
+            # Score of the best model.
             best_model_score = max(sorted(model_report.values()))
-
+            # Name of the best model
             best_model_name = list(model_report.keys())[
                 list(model_report.values()).index(best_model_score)
             ]
@@ -103,17 +107,18 @@ class ModelTrainer:
             
             logging.info("Best model found for both training and testing dataset")
             
+            # Pickling the best model file.
             save_object(
                 file_path = self.model_trainer_config.trained_model_file_path,
                 obj = best_model
             )
 
+            # Predict the outcome using the best model.
             predicted = best_model.predict(x_test)
-
+            # r2 score 
             pred_score = r2_score(y_test,predicted)
             return pred_score
 
         except Exception as e:
             raise CustomException(e,sys)
         
-

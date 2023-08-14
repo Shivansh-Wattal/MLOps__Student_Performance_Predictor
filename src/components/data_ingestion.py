@@ -15,6 +15,7 @@ from src.components.model_trainer import ModelTrainerConfig
 
 @dataclass
 class DataIngestionConfig:
+    # Paths to store data.
     train_data_path: str= os.path.join('artifacts',"train.csv")
     test_data_path: str= os.path.join('artifacts',"test.csv")
     raw_data_path: str= os.path.join('artifacts',"raw_data.csv")
@@ -56,12 +57,3 @@ if __name__ =="__main__":
     modeltrainer = ModelTrainer()
     print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
     
-
-
-
-    
-
-        
-
-
-

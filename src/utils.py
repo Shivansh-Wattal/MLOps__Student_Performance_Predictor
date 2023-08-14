@@ -1,3 +1,5 @@
+# Used to write some common functions to be used.
+
 import os
 import sys
 import numpy as np
@@ -9,6 +11,8 @@ from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
 
 
+# Saving as binary file using Pickle library. (Pickling)
+
 def save_object(file_path,obj):
     try:
         dir_path = os.path.dirname(file_path)
@@ -18,6 +22,8 @@ def save_object(file_path,obj):
     except Exception as e:
         raise CustomException(e, sys)
     
+# Function to evaluate all the given models and also perform hyperparameter testing.
+
 def evaluate_model(x_train,y_train,x_test,y_test,models,param):
     try:
         report = {}
@@ -43,6 +49,7 @@ def evaluate_model(x_train,y_train,x_test,y_test,models,param):
     except Exception as e:
         raise CustomException(e, sys)
     
+# Loading the binary file using Pickle. (Depickling)
 
 def load_object(file_path):
     try:

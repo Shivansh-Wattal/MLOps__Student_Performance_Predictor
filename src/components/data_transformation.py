@@ -37,18 +37,20 @@ class DataTransformation:
                 "test preparation course"
                 ]
             
+            # Data transformation pipeline for numerical columns.
             num_pipeline = Pipeline(
                 steps = [
-                    ('imputer',SimpleImputer(strategy='median')),
-                    ('scaler',StandardScaler())
+                    ('imputer',SimpleImputer(strategy='median')), # Fill null values.
+                    ('scaler',StandardScaler()) # Standardization
                 ]
 
             )
+            # Data transformation pipeline for categorical columns.
             cat_pipeline = Pipeline(
                 steps = [
-                    ('imputer',SimpleImputer(strategy='most_frequent')),
-                    ('one_hot_encoder',OneHotEncoder()),
-                    ('scaler',StandardScaler(with_mean=False))
+                    ('imputer',SimpleImputer(strategy='most_frequent')), # Fill null values.
+                    ('one_hot_encoder',OneHotEncoder()), #One Hot encoding.
+                    ('scaler',StandardScaler(with_mean=False)) # Standardization.
 
                 ]
                 
@@ -57,6 +59,7 @@ class DataTransformation:
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
 
+            # Combined pipeline for all the columns.
             preprocessor = ColumnTransformer(
                 [
                     ('num_pipeline',num_pipeline,numerical_columns),
@@ -72,6 +75,7 @@ class DataTransformation:
     
     def initiate_data_trransformation(self,train_path,test_path):
         try:
+            # Reading data.
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
 
@@ -92,9 +96,11 @@ class DataTransformation:
 
             logging.info("applying preprocessing object to training and testing dataframe")
 
+            # Transforming data using the preprocessing_obj file.
             input_feature_train_arr = preprocessing_obj.fit_transform(input_feature_train_df)
             input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 
+            # Concatination.
             train_arr = np.c_[
                 input_feature_train_arr, np.array(target_feature_train_df)
             ]
