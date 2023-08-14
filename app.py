@@ -46,6 +46,8 @@ def predict_datapoint():
         print("Mid Prediction")
         results=predict_pipeline.predict(pred_df)
         print("after Prediction")
+        if results[0]>100:
+            results[0]=100
         return render_template('home.html',results=results[0])
     
 
