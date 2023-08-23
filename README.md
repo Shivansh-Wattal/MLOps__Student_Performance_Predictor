@@ -26,7 +26,11 @@ Site Link : https://mlops-student-performance-predictor.onrender.com
 - Visualizations of key performance metrics.
 
 ## Demo
-![image](https://github.com/Shivansh-Wattal/MLOps__Student_Performance_Predictor/assets/84259885/983ec852-80c9-4e73-9a65-c0949ab1ed2f)
+![image](https://github.com/Shivansh-Wattal/MLOps__Student_Performance_Predictor/assets/84259885/61c07678-8889-4be6-830b-b547c4460ba7)
+
+Go to :   /predictdata
+
+![image](https://github.com/Shivansh-Wattal/MLOps__Student_Performance_Predictor/assets/84259885/c03e9271-4af9-43ea-909c-7af582df2c40)
 ![image](https://github.com/Shivansh-Wattal/MLOps__Student_Performance_Predictor/assets/84259885/54bf9a02-49b4-44b0-bafa-e215b058eeb2)
 ![image](https://github.com/Shivansh-Wattal/MLOps__Student_Performance_Predictor/assets/84259885/67eeec32-4579-468b-a907-f2e27e896b14)
 
